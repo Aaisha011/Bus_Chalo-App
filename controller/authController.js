@@ -92,6 +92,15 @@ const loginUser = async (req, res) => {
   }
 };
 
+// private controller
+const privateController = (req,res) =>{
+  res.json({
+    msg :"Request by: ",
+    data: req.user
+  })
+  console.log(req.user);
+}
+
 // generate token
 const generatetoken = (id) =>{
   let token = jwt.sign({id},process.env.JWT_SECRET_KEY,{expiresIn:"10d"});
@@ -101,5 +110,6 @@ const generatetoken = (id) =>{
 module.exports = {
   registerUser,
   loginUser,
-  generatetoken
+  generatetoken,
+  privateController
 };

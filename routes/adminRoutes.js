@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const{addBus,updateBus,updateBooking,updateUser,getAllUsers,getAllRatings,getAllBookings} = require('../controller/adminController');
+const adminProtect = require('../middleware/adminMiddleware');
 
-router.post('/bus',addBus);
+router.post('/bus',adminProtect, addBus);
 
 router.put('/bus/:bsid',updateBus);
 router.put('/user/:uid',updateUser);

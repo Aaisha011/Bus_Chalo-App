@@ -40,6 +40,5 @@ app.listen(PORT,() =>{
     console.log(`Server is running on PORT: ${PORT}`.bgMagenta);
 })
 
-
 // Error Handler
 app.use(errorHandler)

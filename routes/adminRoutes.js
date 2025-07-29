@@ -5,14 +5,14 @@ const router = express.Router();
 const{addBus,updateBus,updateBooking,updateUser,getAllUsers,getAllRatings,getAllBookings} = require('../controller/adminController');
 const adminProtect = require('../middleware/adminMiddleware');
 
-router.post('/bus',adminProtect, addBus);
+router.post('/bus', adminProtect, addBus);
 
-router.put('/bus/:bsid',updateBus);
-router.put('/user/:uid',updateUser);
-router.put('/booking/:bid',updateBooking);
+router.put('/bus/:bsid', adminProtect, updateBus);
+router.put('/user/:uid', adminProtect, updateUser);
+router.put('/booking/:bid', adminProtect, updateBooking);
 
-router.get('/get-users',getAllUsers);
-router.get('/get-ratings',getAllRatings);
-router.get('/get-bookings',getAllBookings);
+router.get('/get-users', adminProtect, getAllUsers);
+router.get('/get-ratings', adminProtect, getAllRatings);
+router.get('/get-bookings', adminProtect, getAllBookings);
 
 module.exports = router;

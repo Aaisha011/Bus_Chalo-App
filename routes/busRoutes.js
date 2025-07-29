@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/',getAllBuses);
 
-router.get('/:bid',getBus);
+router.get('/:bsid',getBus);
 
 module.exports = router;

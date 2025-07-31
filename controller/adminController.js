@@ -173,38 +173,37 @@ const updateBooking = async (req, res) => {
         console.log(booking);
 
         if (!booking) {
+            res.status(404)
             throw new Error("Booking not found");
         }
 
-
         const bus = await Bus.findById(booking.bus);
 
-        if(!bus){
+        if (!bus) {
             res.status(400)
             throw new Error("Bus not found");
         }
-        
+
         const updatedBooking = await Booking.findByIdAndUpdate(req.params.bid, req.body, { new: true }).populate("user").populate("bus");
+
         if (!updatedBooking) {
             res.status(400)
             throw new Error("Booking not updated");
         }
+
+        // Update bus seats 
+        await Bus.findByIdAndUpdate(booking.bus, { availableSeats: bus.totalSeats - booking.ticketCount }, { new: true })
 
         res.status(200).json({
             msg: "Booking has been updated successfully",
             data: updatedBooking
         })
 
-
-        // Update bus seats 
-        await Bus.findByIdAndUpdate(booking.bus, { availableSeats: bus.totalSeats - booking.ticketCount }, { new: true })
-
     }
     catch (err) {
         throw new Error(err);
     }
 }
-
 
 module.exports = {
     addBus,

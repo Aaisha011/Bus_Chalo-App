@@ -37,7 +37,7 @@ app.use('/api/bus',require('./routes/busRoutes'));
 app.use('/api/rating',require('./routes/ratingRoutes'));
 
 app.listen(PORT,() =>{
-    console.log(`Server is running on PORT: ${PORT}`.bgMagenta);
+    console.log(`Server is running on PORT: ${PORT}`.bgCyan);
 })
 
 // Error Handler
